@@ -1,0 +1,85 @@
+Name:		texlive-interfaces
+Version:	3.1
+Release:	1
+Summary:	Set parameters for other packages, conveniently
+Group:		Publishing
+URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/interfaces
+License:	LPPL1.3
+Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/interfaces.tar.xz
+Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/interfaces.doc.tar.xz
+Source2:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/interfaces.source.tar.xz
+BuildArch:	noarch
+BuildRequires:	texlive-tlpkg
+Requires(post):	texlive-tlpkg
+Conflicts:	texlive-texmf <= 20110705-3
+Conflicts:	texlive-doc <= 20110705-3
+Conflicts:	texlive-source <= 20110705-3
+
+%description
+The package provides a small number of convenient macros that
+access features in other frequently-used packages, or provide
+interfaces to other useful facilities such as the pdfTeX
+\pdfelapsedtime primitive. Most of these macros use pgfkeys to
+provide a key-value syntax. The package also uses the package
+scrlfile from the Koma-Script bundle (for controlled loading of
+other files) and etoolbox. The package is bundled with sub-
+packages containing actual interfaces: by default, the package
+loads all available sub-packages, but techniques are provided
+for the user to select no more than the interfaces needed for a
+job.
+
+%pre
+    %_texmf_mktexlsr_pre
+
+%post
+    %_texmf_mktexlsr_post
+
+%preun
+    if [ $1 -eq 0 ]; then
+	%_texmf_mktexlsr_pre
+    fi
+
+%postun
+    if [ $1 -eq 0 ]; then
+	%_texmf_mktexlsr_post
+    fi
+
+#-----------------------------------------------------------------------
+%files
+%{_texmfdistdir}/tex/latex/interfaces/interfaces-LaTeX.sty
+%{_texmfdistdir}/tex/latex/interfaces/interfaces-appendix.sty
+%{_texmfdistdir}/tex/latex/interfaces/interfaces-base.sty
+%{_texmfdistdir}/tex/latex/interfaces/interfaces-bookmark.sty
+%{_texmfdistdir}/tex/latex/interfaces/interfaces-embedfile.sty
+%{_texmfdistdir}/tex/latex/interfaces/interfaces-enumitem.sty
+%{_texmfdistdir}/tex/latex/interfaces/interfaces-environ.sty
+%{_texmfdistdir}/tex/latex/interfaces/interfaces-etoolbox.sty
+%{_texmfdistdir}/tex/latex/interfaces/interfaces-fancyhdr.sty
+%{_texmfdistdir}/tex/latex/interfaces/interfaces-hypbmsec.sty
+%{_texmfdistdir}/tex/latex/interfaces/interfaces-hyperref.sty
+%{_texmfdistdir}/tex/latex/interfaces/interfaces-makecell.sty
+%{_texmfdistdir}/tex/latex/interfaces/interfaces-marks.sty
+%{_texmfdistdir}/tex/latex/interfaces/interfaces-pgfkeys.sty
+%{_texmfdistdir}/tex/latex/interfaces/interfaces-scrlfile.sty
+%{_texmfdistdir}/tex/latex/interfaces/interfaces-tikz.sty
+%{_texmfdistdir}/tex/latex/interfaces/interfaces-titlesec.sty
+%{_texmfdistdir}/tex/latex/interfaces/interfaces-tocloft.sty
+%{_texmfdistdir}/tex/latex/interfaces/interfaces-truncate.sty
+%{_texmfdistdir}/tex/latex/interfaces/interfaces-umrand.sty
+%{_texmfdistdir}/tex/latex/interfaces/interfaces.sty
+%doc %{_texmfdistdir}/doc/latex/interfaces/README
+%doc %{_texmfdistdir}/doc/latex/interfaces/interfaces.pdf
+#- source
+%doc %{_texmfdistdir}/source/latex/interfaces/interfaces.drv
+%doc %{_texmfdistdir}/source/latex/interfaces/interfaces.dtx
+%doc %{_texmfdistdir}/source/latex/interfaces/interfaces.ins
+
+#-----------------------------------------------------------------------
+%prep
+%setup -c -a0 -a1 -a2
+
+%build
+
+%install
+mkdir -p %{buildroot}%{_texmfdistdir}
+cp -fpar tex doc source %{buildroot}%{_texmfdistdir}
