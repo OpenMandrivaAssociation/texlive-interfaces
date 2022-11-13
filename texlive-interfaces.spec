@@ -1,19 +1,13 @@
-# revision 21474
-# category Package
-# catalog-ctan /macros/latex/contrib/interfaces
-# catalog-date 2011-02-19 16:41:47 +0100
-# catalog-license lppl1.3
-# catalog-version 3.1
 Name:		texlive-interfaces
-Version:	3.1
-Release:	11
+Version:	21474
+Release:	1
 Summary:	Set parameters for other packages, conveniently
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/interfaces
 License:	LPPL1.3
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/interfaces.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/interfaces.doc.tar.xz
-Source2:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/interfaces.source.tar.xz
+Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/interfaces.r%{version}.tar.xz
+Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/interfaces.doc.r%{version}.tar.xz
+Source2:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/interfaces.source.r%{version}.tar.xz
 BuildArch:	noarch
 BuildRequires:	texlive-tlpkg
 Requires(pre):	texlive-tlpkg
@@ -33,12 +27,12 @@ for the user to select no more than the interfaces needed for a
 job.
 
 %post
-    %{_sbindir}/texlive.post
+%{_sbindir}/texlive.post
 
 %postun
-    if [ $1 -eq 0 ]; then
+if [ $1 -eq 0 ]; then
 	%{_sbindir}/texlive.post
-    fi
+fi
 
 #-----------------------------------------------------------------------
 %files
@@ -72,24 +66,11 @@ job.
 
 #-----------------------------------------------------------------------
 %prep
-%setup -c -a0 -a1 -a2
+%setup -c -a1 -a2
+%autopatch -p1
 
 %build
 
 %install
 mkdir -p %{buildroot}%{_texmfdistdir}
 cp -fpar tex doc source %{buildroot}%{_texmfdistdir}
-
-
-%changelog
-* Wed Jan 04 2012 Paulo Andrade <pcpa@mandriva.com.br> 3.1-2
-+ Revision: 752799
-- Rebuild to reduce used resources
-
-* Sat Nov 05 2011 Paulo Andrade <pcpa@mandriva.com.br> 3.1-1
-+ Revision: 718725
-- texlive-interfaces
-- texlive-interfaces
-- texlive-interfaces
-- texlive-interfaces
-
