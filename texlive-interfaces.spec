@@ -1,6 +1,6 @@
 Name:		texlive-interfaces
 Version:	21474
-Release:	1
+Release:	2
 Summary:	Set parameters for other packages, conveniently
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/interfaces
