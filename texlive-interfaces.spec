@@ -3,7 +3,7 @@ Version:	21474
 Release:	2
 Summary:	Set parameters for other packages, conveniently
 Group:		Publishing
-URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/interfaces
+URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/interfaces
 License:	LPPL1.3
 Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/interfaces.r%{version}.tar.xz
 Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/interfaces.doc.r%{version}.tar.xz
